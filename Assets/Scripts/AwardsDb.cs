@@ -57,6 +57,42 @@ namespace DataBank
         {
             return base.GetDataById(id);
         }   
+        public override IDataReader GetDataByString(string str)
+        {
+            Debug.Log(Tag + "Getting Award: " + str);
+
+            IDbCommand dbcmd = GetDbCommand();
+            dbcmd.CommandText =
+                "SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID + " = '" + str + "'";
+            return dbcmd.ExecuteReader();
+        }
+        public override void DeleteDataByString(string id)
+        {
+            Debug.Log(Tag + "Deleting Award: " + id);
+
+            IDbCommand dbcmd = GetDbCommand();
+            dbcmd.CommandText =
+                "DELETE FROM " + TABLE_NAME + " WHERE " + KEY_ID + " = '" + id + "'";
+            dbcmd.ExecuteNonQuery();
+        }
+        public override void DeleteDataById(int id)
+        {
+            base.DeleteDataById(id);
+        }
+
+        public override void DeleteAllData()
+        {
+            Debug.Log(Tag + "Deleting Table");
+
+            base.DeleteAllData(TABLE_NAME);
+        }
+
+        public override IDataReader GetAllData()
+        {
+            return base.GetAllData(TABLE_NAME);
+        }
+
+
     }   
 }
 

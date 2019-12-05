@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using System.Text;
 namespace DataBank
 {    
     public class AwardsEntity  
@@ -21,9 +22,9 @@ namespace DataBank
             _priority = priority;
             _isLocal = isLocal;
         }
-        public AwardsEntity GetFakeAwardEntity("0","test_type","test_imgUrl","100","200","1");
+        public AwardsEntity GetFakeAwardEntity()
         {
-            return new AwardsEntity();
+            return new AwardsEntity("0","test_type","test_imgUrl","100","200","1");
         }
 
     }
