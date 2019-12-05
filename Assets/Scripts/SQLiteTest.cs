@@ -23,6 +23,24 @@ public class SQLiteTest : MonoBehaviour
         reader = dbcmd.ExecuteReader();//Sends the CommandText to the Connection and builds a SqlDataReader.
         //the table is created: my_table
 
+
+		// Insert values in table
+        IDbCommand cmnd = dbcon.CreateCommand();
+        cmnd.CommandText = "INSERT INTO my_table (id, val) VALUES (0, 5)";
+        cmnd.ExecuteNonQuery();
+
+
+	    // Read and print all values in table   
+        IDbCommand cmnd_read = dbcon.CreateCommand();
+        IDataReader reader;string query ="SELECT * FROM my_table";
+        cmnd_read.CommandText = query;
+        reader = cmnd_read.ExecuteReader();while (reader.Read()){
+        Debug.Log("id: " + reader[0].ToString());
+        Debug.Log("val: " + reader[1].ToString());
+        }
+        
+        // Close connection
+        dbcon.Close();
         
         
     }
