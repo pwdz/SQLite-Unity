@@ -27,6 +27,10 @@ namespace DataBank{
         {
             db_connection.Close();
         }
+        public void CloseDb()
+        {
+            db_connection.Close();
+        }
         // virtual functions
         public virtual IDataReader GetDataById(int id)
         {
@@ -66,6 +70,11 @@ namespace DataBank{
         public IDbCommand GetDbCommand()
         {
             return db_connection.CreateCommand();
+        }
+        public virtual bool UpdateData()
+        {
+            Debug.Log(Tag + "this function is not implemnted");
+            throw null;
         }
         
 

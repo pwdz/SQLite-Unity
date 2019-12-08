@@ -21,7 +21,7 @@ namespace DataBank
         private String[] COLUMNS = new String[] {KEY_ID, KEY_TYPE, KEY_IMGURL, KEY_NUM, KEY_PRIORITY,KEY_ISLOCAL};
         public AwardsDb() : base()
         {
-            IDbCommand dbcmd = getDbCommand();
+            IDbCommand dbcmd = GetDbCommand();
 
             dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( " +
             KEY_ID + " INTEGER PRIMARY KEY, " +
@@ -35,7 +35,7 @@ namespace DataBank
         }
         public void AddData(AwardsEntity award)
         {
-            IDbCommand dbcmd = getDbCommand();
+            IDbCommand dbcmd = GetDbCommand();
             dbcmd.CommandText =
                 "INSERT INTO " + TABLE_NAME
                 + " ( "
@@ -49,8 +49,10 @@ namespace DataBank
                 + "VALUES ( '"
                 + award._id + "', '"
                 + award._type + "', '"
-                + award._Lat + "', '"
-                + award._Lng + "' )";
+                + award._imageUrl + "', '"
+                + award._num + "', '"
+                + award._priority + "', '"
+                + award._isLocal + "' )";
             dbcmd.ExecuteNonQuery();
        	}
         public override IDataReader GetDataById(int id)
@@ -84,13 +86,23 @@ namespace DataBank
         {
             Debug.Log(Tag + "Deleting Table");
 
-            base.DeleteAllData(TABLE_NAME);
+            base.DeleteAllData();
         }
 
         public override IDataReader GetAllData()
         {
-            return base.GetAllData(TABLE_NAME);
+            IDbCommand dbcmd = GetDbCommand();
+            dbcmd.CommandText = "SELECT *  FROM "+ TABLE_NAME; 
+            return dbcmd.ExecuteReader();
         }
+        public override bool UpdateData()
+        {
+             
+        }
+        // public void CldoseDb()
+        // {
+            
+        // }
 
 
     }   

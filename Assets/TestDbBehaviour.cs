@@ -14,7 +14,7 @@ public class TestDbBehaviour : MonoBehaviour
 		myAwardDb.AddData(new AwardsEntity("4", "AR", "images/a4.png","14", "104","1"));
 		myAwardDb.AddData(new AwardsEntity("5", "AR", "images/a5.png","15", "105","0"));
 		myAwardDb.AddData(new AwardsEntity("6", "AR", "images/a6.png","16", "106","1"));
-		myAwardDb.close();
+		myAwardDb.CloseDb();
 
 
 		//Fetch All Data
